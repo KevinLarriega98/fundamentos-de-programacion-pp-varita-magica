@@ -62,3 +62,59 @@ images.forEach((image) => {
     }
   })
 })
+
+const paragraphs = document.querySelectorAll('p')
+
+paragraphs.forEach((paragraph) => {
+  let colorBeforeHover
+  let backgroundBeforeHover
+  let wasChangedByClick
+
+  paragraph.addEventListener('mouseenter', () => {
+    colorBeforeHover = paragraph.style.color
+    backgroundBeforeHover = paragraph.style.backgroundColor
+    wasChangedByClick = false
+
+    paragraph.style.color = getRandom(paragraphColors)
+    paragraph.style.backgroundColor = getRandom(paragraphColors)
+  })
+
+  paragraph.addEventListener('click', (event) => {
+    if (event.target === paragraph) {
+      wasChangedByClick = true
+    }
+  })
+
+  paragraph.addEventListener('mouseleave', () => {
+    if (!wasChangedByClick) {
+      paragraph.style.color = colorBeforeHover
+      paragraph.style.backgroundColor = backgroundBeforeHover
+    }
+  })
+})
+
+const blocks = document.querySelectorAll('article, section')
+
+blocks.forEach((block) => {
+  let backgroundBeforeHover
+  let wasChangedByClick
+
+  block.addEventListener('mouseenter', () => {
+    backgroundBeforeHover = block.style.backgroundColor
+    wasChangedByClick = false
+
+    block.style.backgroundColor = getRandom(blockColors)
+  })
+
+  block.addEventListener('click', (event) => {
+    if (event.target === block) {
+      wasChangedByClick = true
+    }
+  })
+
+  block.addEventListener('mouseleave', () => {
+    if (!wasChangedByClick) {
+      block.style.backgroundColor = backgroundBeforeHover
+    }
+  })
+})
