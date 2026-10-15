@@ -43,3 +43,22 @@ document.addEventListener('click', (event) => {
     clickedElement.style.backgroundColor = getRandom(blockColors)
   }
 })
+
+const images = document.querySelectorAll('img')
+
+images.forEach((image) => {
+  let srcBeforeHover
+
+  image.addEventListener('mouseenter', () => {
+    srcBeforeHover = image.getAttribute('src')
+    image.setAttribute('src', 'assets/abracadabra.gif')
+  })
+
+  image.addEventListener('mouseleave', () => {
+    const wasChangedByClick = image.getAttribute('src') !== 'assets/abracadabra.gif'
+
+    if (!wasChangedByClick) {
+      image.setAttribute('src', srcBeforeHover)
+    }
+  })
+})
