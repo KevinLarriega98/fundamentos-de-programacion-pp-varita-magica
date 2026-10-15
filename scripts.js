@@ -28,3 +28,18 @@ const getRandom = (array) => {
 
   return array[randomIndex]
 }
+
+document.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  const clickedElement = event.target
+
+  if (clickedElement.matches('img')) {
+    clickedElement.src = getRandom(magicGifs)
+  } else if (clickedElement.matches('p')) {
+    clickedElement.style.color = getRandom(paragraphColors)
+    clickedElement.style.backgroundColor = getRandom(paragraphColors)
+  } else if (clickedElement.matches('article, section')) {
+    clickedElement.style.backgroundColor = getRandom(blockColors)
+  }
+})
