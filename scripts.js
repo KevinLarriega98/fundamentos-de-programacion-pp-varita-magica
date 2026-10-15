@@ -47,74 +47,50 @@ document.addEventListener('click', (event) => {
 const images = document.querySelectorAll('img')
 
 images.forEach((image) => {
-  let srcBeforeHover
+  let originalSrc
 
   image.addEventListener('mouseenter', () => {
-    srcBeforeHover = image.getAttribute('src')
-    image.setAttribute('src', 'assets/abracadabra.gif')
+    originalSrc = image.src
+    image.src = 'assets/abracadabra.gif'
   })
 
   image.addEventListener('mouseleave', () => {
-    const wasChangedByClick = image.getAttribute('src') !== 'assets/abracadabra.gif'
-
-    if (!wasChangedByClick) {
-      image.setAttribute('src', srcBeforeHover)
-    }
+    image.src = originalSrc
   })
 })
 
 const paragraphs = document.querySelectorAll('p')
 
 paragraphs.forEach((paragraph) => {
-  let colorBeforeHover
-  let backgroundBeforeHover
-  let wasChangedByClick
+  let originalColor
+  let originalBackground
 
   paragraph.addEventListener('mouseenter', () => {
-    colorBeforeHover = paragraph.style.color
-    backgroundBeforeHover = paragraph.style.backgroundColor
-    wasChangedByClick = false
+    originalColor = paragraph.style.color
+    originalBackground = paragraph.style.backgroundColor
 
     paragraph.style.color = getRandom(paragraphColors)
     paragraph.style.backgroundColor = getRandom(paragraphColors)
   })
 
-  paragraph.addEventListener('click', (event) => {
-    if (event.target === paragraph) {
-      wasChangedByClick = true
-    }
-  })
-
   paragraph.addEventListener('mouseleave', () => {
-    if (!wasChangedByClick) {
-      paragraph.style.color = colorBeforeHover
-      paragraph.style.backgroundColor = backgroundBeforeHover
-    }
+    paragraph.style.color = originalColor
+    paragraph.style.backgroundColor = originalBackground
   })
 })
 
 const blocks = document.querySelectorAll('article, section')
 
 blocks.forEach((block) => {
-  let backgroundBeforeHover
-  let wasChangedByClick
+  let originalBackground
 
   block.addEventListener('mouseenter', () => {
-    backgroundBeforeHover = block.style.backgroundColor
-    wasChangedByClick = false
+    originalBackground = block.style.backgroundColor
 
     block.style.backgroundColor = getRandom(blockColors)
   })
 
-  block.addEventListener('click', (event) => {
-    if (event.target === block) {
-      wasChangedByClick = true
-    }
-  })
-
   block.addEventListener('mouseleave', () => {
-    if (!wasChangedByClick) {
-      block.style.backgroundColor = backgroundBeforeHover
-    }
+    block.style.backgroundColor = originalBackground
   })
 })
